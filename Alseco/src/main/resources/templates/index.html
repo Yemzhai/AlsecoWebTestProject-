@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Сотрудники</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container text-center p-5">
+  <div>
+    <h1>Список Сотрудников</h1>
+  </div>
+  <div>
+    <table class="table table-striped table-dark">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">ФИО</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Общая стоимость</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="person : ${listPeople}">
+        <tr>
+          <td>[[${person.id}]]</td>
+          <td>[[${person.first_name}]]</td>
+          <td>[[${person.countOfMaterialAssets}]]</td>
+          <td>[[${person.totalPrice}]]</td>
+          <td>
+            <a class="btn btn-success" th:href="@{'/materialAssets/new/' + ${person.id}}" role="button">Добавить МЦ</a>
+            &nbsp;
+            <a class="btn btn-primary" th:href="@{'/person/edit/' + ${person.id}}" role="button">Обновить</a>
+            &nbsp;
+            <a class="btn btn-danger" th:href="@{'/person/delete/' + ${person.id}}" role="button">Удалить</a>
+          </td>
+        </tr>
+      </th:block>
+      </tbody>
+    </table>
+    <a class="h4" th:href="@{/person/new}">Добавить Пользователя</a>
+  </div>
+</div>
+</body>
+</html>
