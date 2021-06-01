@@ -1,8 +1,12 @@
 package web.project.webproject.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 public class MaterialAssets {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

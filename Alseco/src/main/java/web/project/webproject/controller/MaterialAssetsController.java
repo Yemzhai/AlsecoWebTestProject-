@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import web.project.webproject.entity.MaterialAssets;
+import web.project.webproject.entity.MaterialAssetsDTO;
 import web.project.webproject.entity.Person;
 import web.project.webproject.repository.MaterialAssetsRepository;
 import web.project.webproject.repository.PersonRepository;
@@ -33,17 +34,25 @@ public class MaterialAssetsController {
                 materialAssetsList.add(materialAsset);
             }
         }
+
         model.addAttribute("materialAssetsList", materialAssetsList);
-        model.addAttribute("materialAssets", new MaterialAssets());
+        model.addAttribute("materialAssets", new MaterialAssetsDTO());
         return "create_materialAssets";
     }
 
     @PostMapping("/materialAssets/save")
-    public String saveMaterialAssets(MaterialAssets materialAssets){
+    public String saveMaterialAssets(MaterialAssetsDTO materialAssetsDTO){
+        MaterialAssets materialAssets = new MaterialAssets();
+        materialAssets.setName(materialAssetsDTO.getName());
+        materialAssets.setPrice(materialAssetsDTO.getPrice());
+
+        materialAssets.setPerson(personRepository.getById(materialAssetsDTO.getPerson_id()));
+        System.out.println(materialAssetsDTO);
         materialAssetsRepository.save(materialAssets);
         return "redirect:/";
     }
 }
-// delete person/мц with modal window
-// edit person/мц
+
+// series layer
+// modal Mapper
 

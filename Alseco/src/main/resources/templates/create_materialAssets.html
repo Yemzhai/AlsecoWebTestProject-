@@ -16,6 +16,8 @@
           method="post"
           style="max-width: 650px;
                        margin: 0 auto;">
+    <input type="hidden" th:value="${person.id}" name="person_id"/>
+<!--    <input type="hidden" th:field="*{person_id}" th:value="${person.id}">-->
     <div class="m-3">
       <div class="form-group row p-3">
         <label class="col-form-label col-sm-4">Название:</label>
@@ -50,7 +52,6 @@
         </thead>
         <tbody>
         <th:block th:each="materialAsset : ${materialAssetsList}">
-          <div><h4>[[${person.name}]]</h4> </div>
           <tr>
             <td>[[${materialAsset.id}]]</td>
             <td>[[${materialAsset.name}]]</td>
